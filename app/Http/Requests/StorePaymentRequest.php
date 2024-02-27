@@ -22,7 +22,7 @@ class StorePaymentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'enrollmenent_id' => 'required',
+            'enrollment_id' => 'required',
             'paid_date' => 'required',
             'amount' => 'required'
         ];

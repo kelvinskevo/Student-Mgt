@@ -23,4 +23,9 @@ class Enrollment extends Model
     {
         return $this->belongsTo(Batch::class);
     }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePaymentRequest;
 use App\Http\Requests\UpdatePaymentRequest;
 use App\Models\Payment;
+use App\Models\Enrollment;
 
 class PaymentController extends Controller
 {
@@ -13,7 +14,8 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        //
+        $payments = Payment::all();
+        return view('payments.index')->with('payments', $payments);
     }
 
     /**
@@ -21,7 +23,8 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
+        $enrollments = Enrollment::all();
+        return view('payments.create')->with('enrollments', $enrollments);
     }
 
     /**
@@ -29,7 +32,8 @@ class PaymentController extends Controller
      */
     public function store(StorePaymentRequest $request)
     {
-        //
+        Payment::create($request->validated());
+        return back()->with('success', 'Payment Received');
     }
 
     /**
@@ -37,7 +41,7 @@ class PaymentController extends Controller
      */
     public function show(Payment $payment)
     {
-        //
+        return view('payments.show')->with('payment', $payment);
     }
 
     /**
@@ -45,7 +49,8 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        //
+        $enrollments = Enrollment::all();
+        return view('payments.edit')->with('enrollments', $enrollments)->with('payment', $payment);
     }
 
     /**
@@ -53,7 +58,9 @@ class PaymentController extends Controller
      */
     public function update(UpdatePaymentRequest $request, Payment $payment)
     {
-        //
+        $data = $request->validated();
+        $payment->update($data);
+        return back()->with('success', 'Payment Updated');
     }
 
     /**
@@ -61,6 +68,7 @@ class PaymentController extends Controller
      */
     public function destroy(Payment $payment)
     {
-        //
+        $payment->delete();
+        return back()->with('success', 'Payment Deleted');
     }
 }

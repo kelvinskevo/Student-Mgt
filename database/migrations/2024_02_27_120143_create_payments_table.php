@@ -18,7 +18,7 @@ return new class extends Migration
             $table->double('amount');
             $table->timestamps();
 
-            $table->foreign('enrollment_id')->references('id')->on('enrollment')->onDelete('cascade');
+            $table->foreign('enrollment_id')->references('id')->on('enrollments')->onDelete('cascade');
         });
     }
 

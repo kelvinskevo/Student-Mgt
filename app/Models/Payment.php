@@ -10,7 +10,7 @@ class Payment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'enrollmenent_id', 'paid_date', 'amount'
+        'enrollment_id', 'paid_date', 'amount'
     ];
 
     public function enrollment()
