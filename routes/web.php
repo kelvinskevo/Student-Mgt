@@ -5,6 +5,8 @@ use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollmentController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\Pdfontroller;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -40,3 +42,7 @@ Route::get('/', [DashboardController::class, 'dashboard']);
 Route::resource('/enrollments', EnrollmentController::class);
 
 Route::resource('/payments', PaymentController::class);
+
+//print
+//Route::get('report/report1/{pid}', [ReportController::class, 'report1']);
+Route::get('/generatepdf', [Pdfontroller::class, 'generatepdf']);
