@@ -96,6 +96,7 @@
             <a href="/batches">Batches</a>
             <a href="/enrollments">Enrollment</a>
             <a href="/payments">Payment</a>
+            <a href="/reports">Reports</a>
         </div>
 
         <!-- Page content -->

@@ -46,3 +46,10 @@ Route::resource('/payments', PaymentController::class);
 //print
 //Route::get('report/report1/{pid}', [ReportController::class, 'report1']);
 Route::get('/generatepdf', [Pdfontroller::class, 'generatepdf']);
+
+//reports
+Route::get('/reports', [ReportController::class, 'reports']);
+
+Route::get('/reportform', function () {
+    return view('/reports.reportform');
+});

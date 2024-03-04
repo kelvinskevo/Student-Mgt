@@ -4,20 +4,20 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
-use App\Models\Teacher;
+use App\Models\Payment;
 
 class Pdfontroller extends Controller
 {
     public function generatepdf()
     {
-        $teachers = Teacher::get();
+        $payments = Payment::get();
         $data = [
             'title' => 'Student Management system',
             'date' => date('m / d / y'),
-            'teachers' => $teachers
+            'payments' => $payments
         ];
 
-        $pdf = Pdf::loadView('pdf.invoice', $data);
-        return $pdf->download('invoice.pdf');
+        $pdf = Pdf::loadView('payments.pdf', $data);
+        return $pdf->stream('payments.pdf');
     }
 }
