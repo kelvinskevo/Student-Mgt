@@ -74,4 +74,9 @@ class EnrollmentController extends Controller
         $enrollment->delete();
         return back()->with('success', 'Enrollment Delete isa success');
     }
+    public function enrollmentCounter()
+    {
+        $enrollmentCount = Enrollment::count();
+        return $enrollmentCount;
+    }
 }
