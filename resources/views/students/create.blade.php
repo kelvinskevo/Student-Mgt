@@ -8,8 +8,8 @@
 
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Students</a></li>
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="/students">Students</a></li>
                 <li class="active">Add New Student</li>
             </ol>
         </section>
