@@ -113,7 +113,7 @@
              </li>
 
              <li class="nav-link">
-                 <a href="#">
+                 <a href="/reports">
                      <i class="fa fa-book"></i> <span>Reports</span>
                  </a>
              </li>

@@ -1,73 +1,81 @@
-@extends('layout')
+@extends('layouts.app')
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Payments</h2>
-                    </div>
-                    @include('messages')
-                    <div class="card-body">
-                        <a href="{{ url('/payments/create') }}" class="btn btn-success btn-sm" title="Add New Batch">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-                        <br />
-                        <br />
-                        <div class="table-responsive">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                payments
+                <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><a href="/teachers">Payments</a></li>
+            </ol>
+        </section>
 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Enrollment</th>
-                                        <th>Paid Date</th>
-                                        <th>Amount</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($payments as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->enrollment->enrollment_no }}</td>
-                                            <td>{{ $item->paid_date }}</td>
-                                            <td>{{ $item->amount }}</td>
+        <!-- Main content -->
+        <section class="content">
 
-                                            <td>
-                                                <a href="/payments/{{ $item->id }}" title="View payment"><button
-                                                        class="btn btn-info btn-sm"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i> View</button></a>
-                                                <a href="/payments/{{ $item->id }}/edit" title="Edit payment"><button
-                                                        class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o"
-                                                            aria-hidden="true"></i>
-                                                        Edit</button></a>
-
-                                                <form method="POST" action="/payments/{{ $item->id }}"
-                                                    accept-charset="UTF-8" style="display:inline">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        title="Delete batch"
-                                                        onclick="return confirm(&quot;Confirm delete?&quot;)"><i
-                                                            class="fa fa-trash-o" aria-hidden="true"></i>
-                                                        Delete</button>
-                                                </form>
-                                                <a href="{{ url('/report/report1/' . $item->id) }}"
-                                                    title="Edit payment"><button class="btn btn-success"><i
-                                                            class="fa fa-print" aria-hidden="true"></i></button></a>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
+            <div class="box">
+                <div class="box-header">
+                    <a href="{{ url('/payments/create') }}" class="btn btn-primary">New Payment</a>
                 </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Enrollment</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($payments as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->enrollment->enrollment_no }}</td>
+                                    <td>{{ $item->amount }}</td>
+                                    <td>{{ $item->paid_date }}</td>
+
+                                    <td>
+                                        <form method="POST" action="/payments/{{ $item->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="/payments/{{ $item->id }}" class="btn btn-info btn-sm"><i
+                                                    class="fa fa-eye" aria-hidden="true"></i> view
+                                            </a>
+                                            <a href="/payments/{{ $item->id }}/edit" class="btn btn-primary btn-sm"><i
+                                                    class="fa fa-pencil-square-o"></i>
+                                                Edit
+                                            </a>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Student"
+                                                onclick="return confirm(&quot;Confirm delete?&quot;)"><i
+                                                    class="fa fa-trash-o" aria-hidden="true"></i>
+                                                Delete</button>
+                                            <a href="{{ url('/report/report1/' . $item->id) }}"><button
+                                                    class="btn btn-success"><i class="fa fa-print" aria-hidden="true"></i>
+                                                    Print</button></a>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
             </div>
-        </div>
+
+            <!-- /.row -->
+
+        </section>
+        <!-- /.content -->
     </div>
 @endsection
