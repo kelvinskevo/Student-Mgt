@@ -88,9 +88,9 @@
                      </span>
                  </a>
                  <ul class="treeview-menu">
-                     <li><a href="{{ route('batches.index') }}"><i class="fa fa-circle-o"></i> View</a>
+                     <li><a href="{{ route('enrollments.index') }}"><i class="fa fa-circle-o"></i> View</a>
                      </li>
-                     <li><a href="{{ route('batches.create') }}"><i class="fa fa-circle-o"></i> Register
+                     <li><a href="{{ route('enrollments.create') }}"><i class="fa fa-circle-o"></i> Register
                          </a></li>
                      <li><a href="#"><i class="fa fa-circle-o"></i> Editors</a></li>
                  </ul>

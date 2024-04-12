@@ -1,73 +1,86 @@
-@extends('layout')
+@extends('layouts.app')
+
 @section('content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">
-                        <h2>Enrollments</h2>
-                    </div>
-                    @include('messages')
-                    <div class="card-body">
-                        <a href="{{ url('/enrollments/create') }}" class="btn btn-success btn-sm" title="">
-                            <i class="fa fa-plus" aria-hidden="true"></i> Add New
-                        </a>
-                        <br />
-                        <br />
-                        <div class="table-responsive">
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Enrollments
+                <small></small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li class="active"><a href="/students">Enrollements</a></li>
+            </ol>
+        </section>
 
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Enroll No</th>
-                                        <th>Batch</th>
-                                        <th>Student</th>
-                                        <th>Join Date</th>
-                                        <th>Fee</th>
-                                        <th>Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($enrollments as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->enrollment_no }}</td>
-                                            <td>{{ $item->batch->name }}</td>
-                                            <td>{{ $item->student->name }}</td>
-                                            <td>{{ $item->join_date }}</td>
-                                            <td> Ksh.{{ $item->fee }}</td>
-                                            <td>
-                                                <a href="/enrollments/{{ $item->id }}" title="View Enrollment"><button
-                                                        class="btn btn-info btn-sm"><i class="fa fa-eye"
-                                                            aria-hidden="true"></i> View</button></a>
-                                                <a href="/enrollments/{{ $item->id }}/edit"
-                                                    title="Edit Enrollment"><button class="btn btn-primary btn-sm"><i
-                                                            class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                                        Edit</button></a>
+        <!-- Main content -->
+        <section class="content">
 
-                                                <form method="POST" action="/enrollments/{{ $item->id }}"
-                                                    accept-charset="UTF-8" style="display:inline">
-                                                    @csrf
-                                                    @method('DELETE')
-
-                                                    <button type="submit" class="btn btn-danger btn-sm"
-                                                        title="Delete enrollment"
-                                                        onclick="return confirm(&quot;Confirm delete?&quot;)"><i
-                                                            class="fa fa-trash-o" aria-hidden="true"></i>
-                                                        Delete</button>
-                                                </form>
-                                            </td>
-                                        </tr>
-                                    @endforeach
-
-                                </tbody>
-                            </table>
-
-                        </div>
-                    </div>
+            <div class="box">
+                <div class="box-header">
+                    <a href="{{ url('/enrollments/create') }}" class="btn btn-primary btn-sm" title="Add New Enrollment">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add New Enrollment
+                    </a>
                 </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Enroll No</th>
+                                <th>Batch</th>
+                                <th>Student</th>
+                                <th>Join Date</th>
+                                <th>Fee</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach ($enrollments as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item->enrollment_no }}</td>
+                                    <td>{{ $item->batch->name }}</td>
+                                    <td>{{ $item->student->name }}</td>
+                                    <td>{{ $item->join_date }}</td>
+                                    <td> Ksh.{{ $item->fee }}</td>
+
+                                    <td>
+                                        <form method="POST" action="/enrollments/{{ $item->id }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <a href="/enrollments/{{ $item->id }}" class="btn btn-info btn-sm"><i
+                                                    class="fa fa-eye" aria-hidden="true"></i> view
+                                            </a>
+                                            <a href="/enrollments/{{ $item->id }}/edit"
+                                                class="btn btn-warning btn-sm"><i class="fa fa-pencil-square-o"></i>
+                                                Edit
+                                            </a>
+                                            <button type="submit" class="btn btn-danger btn-sm" title="Delete Student"
+                                                onclick="return confirm(&quot;Confirm delete?&quot;)"><i
+                                                    class="fa fa-trash-o" aria-hidden="true"></i>
+                                                Delete</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @endforeach
+
+
+
+                        </tbody>
+
+                    </table>
+                </div>
+                <!-- /.box-body -->
             </div>
-        </div>
+
+            <!-- /.row -->
+
+        </section>
+        <!-- /.content -->
     </div>
 @endsection
