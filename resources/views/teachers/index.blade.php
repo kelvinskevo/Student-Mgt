@@ -18,7 +18,9 @@
 
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ url('/teachers/create') }}" class="btn btn-primary">Add New Teacher</a>
+                    <a href="{{ url('/teachers/create') }}" class="btn btn-primary">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Add New Teacher</a>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">

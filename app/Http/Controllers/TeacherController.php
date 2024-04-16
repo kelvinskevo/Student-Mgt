@@ -75,4 +75,9 @@ class TeacherController extends Controller
         $teacherCount = Teacher::count();
         return $teacherCount;
     }
+
+    public function TeacherDashboard()
+    {
+        return view('teachers.dashboard');
+    }
 }

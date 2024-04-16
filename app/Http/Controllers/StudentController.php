@@ -74,4 +74,9 @@ class StudentController extends Controller
         $studentCount = Student::count();
         return $studentCount;
     }
+
+    public function StudentDashboard()
+    {
+        return view('teachers.dashboard');
+    }
 }

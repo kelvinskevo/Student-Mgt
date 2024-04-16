@@ -19,7 +19,7 @@
 
             <div class="box">
                 <div class="box-header">
-                    <a href="{{ url('/students/create') }}" class="btn btn-primary btn-sm" title="Add New Batch">
+                    <a href="{{ url('/students/create') }}" class="btn btn-primary btn-sm" title="Add New Student">
                         <i class="fa fa-plus" aria-hidden="true"></i>
                         Add New Student
                     </a>
