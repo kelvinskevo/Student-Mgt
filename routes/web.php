@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\Pdfontroller;
 use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
 
 /*
@@ -60,6 +61,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/payments', PaymentController::class);
 
     Route::resource('/courses', CourseController::class);
+
+    Route::resource('/subjects', SubjectController::class);
 
     //print
     //Route::get('report/report1/{pid}', [ReportController::class, 'report1']);
