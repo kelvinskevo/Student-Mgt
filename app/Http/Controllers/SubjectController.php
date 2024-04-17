@@ -51,7 +51,7 @@ class SubjectController extends Controller
      */
     public function edit(Subject $subject)
     {
-        //
+        return view('subjects.edit')->with('subject', $subject);
     }
 
     /**
@@ -59,7 +59,9 @@ class SubjectController extends Controller
      */
     public function update(UpdateSubjectRequest $request, Subject $subject)
     {
-        //
+        $data = $request->validated();
+        $subject->update($data);
+        return back()->with('success', 'subject updated Succcessfuly');
     }
 
     /**
