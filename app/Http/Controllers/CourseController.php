@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreCourseRequest;
 use App\Http\Requests\UpdateCourseRequest;
 use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 
 class CourseController extends Controller
@@ -32,8 +34,11 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
 
-        Course::create($request->validated());
-        return back()->with('success', 'course Added Succcessfuly');
+        $data = $request->validated();
+        $data['created_by'] = Auth::id(); // Set the created_by field to the current user's ID
+
+        Course::create($data);
+        return back()->with('success', 'Class added successfully');
     }
 
     /**
@@ -76,5 +81,10 @@ class CourseController extends Controller
     {
         $courseCount = Course::count();
         return $courseCount;
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

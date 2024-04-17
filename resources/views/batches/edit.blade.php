@@ -2,7 +2,7 @@
 @section('content')
     <div class="container">
 
-        <div class="card col-6 offset-3 mt-3">
+        <div class="mt-3 card col-6 offset-3">
             @include('messages')
             <div class="card-header">Edit Course</div>
 

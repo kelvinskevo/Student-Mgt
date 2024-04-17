@@ -59,6 +59,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
 
     Route::resource('/payments', PaymentController::class);
 
+    Route::resource('/courses', CourseController::class);
+
     //print
     //Route::get('report/report1/{pid}', [ReportController::class, 'report1']);
     Route::get('/generatepdf', [Pdfontroller::class, 'generatepdf']);

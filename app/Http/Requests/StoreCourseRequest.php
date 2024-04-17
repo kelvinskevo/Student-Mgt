@@ -22,9 +22,9 @@ class StoreCourseRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'syllabus' => 'required',
-            'duration' => 'required'
+            'name' => 'required|max:255|unique:courses',
+            'status' => 'required',
+
         ];
     }
 }

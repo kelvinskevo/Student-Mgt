@@ -10,11 +10,16 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'duration', 'syllabus'
+        'name', 'status', 'created_by'
     ];
 
     public function batches()
     {
         return $this->hasMany(Batch::class);
+    }
+
+    public function createdBy()
+    {
+        return $this->belongsTo(User::class, 'created_by');
     }
 }

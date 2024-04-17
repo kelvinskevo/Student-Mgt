@@ -81,6 +81,22 @@
              </li>
 
              <li class="treeview">
+                 <a href="/courses">
+                     <i class="fa fa-object-group"></i> <span>Class</span>
+                     <span class="pull-right-container">
+                         <i class="fa fa-angle-left pull-right"></i>
+                     </span>
+                 </a>
+                 <ul class="treeview-menu">
+                     <li><a href="{{ route('courses.index') }}"><i class="fa fa-circle-o"></i> View</a>
+                     </li>
+                     <li><a href="{{ route('courses.create') }}"><i class="fa fa-circle-o"></i> Register
+                         </a></li>
+                     <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                 </ul>
+             </li>
+
+             <li class="treeview">
                  <a href="/enrollments">
                      <i class="fa fa-user-plus"></i> <span>Enrollment</span>
                      <span class="pull-right-container">
