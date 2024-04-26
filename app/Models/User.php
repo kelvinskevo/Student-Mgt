@@ -52,4 +52,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Subject::class, 'created_by');
     }
+
+
+    public function subjectAssignments()
+    {
+        return $this->hasMany(ClassSubjectAssignment::class, 'created_by');
+    }
 }

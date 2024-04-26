@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\BatchController;
+use App\Http\Controllers\ClassSubjectAssignmentController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\EnrollmentController;
@@ -13,6 +14,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\SubjectController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\Class;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,7 +28,7 @@ use App\Http\Controllers\TeacherController;
 */
 
 Route::get('/', function () {
-    return view('login');
+    return view('welcome');
 });
 
 
@@ -63,6 +65,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::resource('/courses', CourseController::class);
 
     Route::resource('/subjects', SubjectController::class);
+
+    Route::resource('/class_subject_assignments', ClassSubjectAssignmentController::class);
 
     //print
     //Route::get('report/report1/{pid}', [ReportController::class, 'report1']);

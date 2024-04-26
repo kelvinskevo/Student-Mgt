@@ -22,4 +22,11 @@ class Subject extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function subjectAssignments()
+    {
+        return $this->hasMany(ClassSubjectAssignment::class, 'subject_id');
+    }
+
+    
 }

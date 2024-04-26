@@ -105,9 +105,10 @@
                  <ul class="treeview-menu">
                      <li><a href="{{ route('subjects.index') }}"><i class="fa fa-circle-o"></i> View</a>
                      </li>
-                     <li><a href="{{ route('subjects.create') }}"><i class="fa fa-circle-o"></i> Register
+                     <li><a href="{{ route('subjects.create') }}"><i class="fa fa-circle-o"></i> Add New Subject
                          </a></li>
-                     <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i> Editors</a></li>
+                     <li><a href="{{ route('class_subject_assignments.index') }}"><i class="fa fa-circle-o"></i> Assign
+                             Subject</a></li>
                  </ul>
              </li>
 

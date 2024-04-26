@@ -22,4 +22,9 @@ class Course extends Model
     {
         return $this->belongsTo(User::class, 'created_by');
     }
+
+    public function subjectAssignments()
+    {
+        return $this->hasMany(ClassSubjectAssignment::class, 'class_id');
+    }
 }

@@ -9,7 +9,7 @@
             </h1>
             <ol class="breadcrumb">
                 <li><a href="/"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="/students">Subjects</a></li>
+                <li><a href="/subjects">Subjects</a></li>
                 <li class="active">Add New Subject</li>
             </ol>
         </section>
