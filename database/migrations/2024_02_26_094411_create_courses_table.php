@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string("code")->unique();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->unsignedBigInteger('created_by')->default(1);
             $table->foreign('created_by')->references('id')->on('users');

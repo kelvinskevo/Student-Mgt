@@ -20,9 +20,13 @@ return new class extends Migration
             $table->softDeletes();
             $table->timestamps();
 
-            $table->foreign('class_id')->references('id')->on('classes')->onDelete('cascade');
+            $table->foreign('class_id')->references('id')->on('courses')->onDelete('cascade');
             $table->foreign('subject_id')->references('id')->on('subjects')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+
+            $table->index('class_id');
+            $table->index('subject_id');
+            $table->index('created_by');
         });
     }
 

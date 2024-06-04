@@ -15,7 +15,14 @@ class Student extends Model
         'mobile',
         'email',
         'dob',
-        'gender'
+        'class',
+        'gender',
+        'admission_number',
+        'religion',
+        'blood_group',
+        'status',
+        'profile_pic',
+        'created_by',
     ];
 
     public function createdBy()

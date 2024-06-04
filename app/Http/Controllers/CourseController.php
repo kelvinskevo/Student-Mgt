@@ -34,10 +34,22 @@ class CourseController extends Controller
     public function store(StoreCourseRequest $request)
     {
 
+        // Validate the request data
         $data = $request->validated();
-        $data['created_by'] = Auth::id(); // Set the created_by field to the current user's ID
 
+        // Generate a unique course code with only three numbers
+        do {
+            $courseCode = rand(100, 999);
+        } while (Course::where('code', $courseCode)->exists());
+
+        // Set the course code and the created_by field
+        $data['code'] = $courseCode;
+        $data['created_by'] = Auth::id();
+
+        // Create the course
         Course::create($data);
+
+        // Redirect or return response
         return back()->with('success', 'Class added successfully');
     }
 

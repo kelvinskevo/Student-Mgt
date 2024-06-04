@@ -10,7 +10,7 @@ class Course extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name', 'status', 'created_by'
+        'name', 'code', 'status', 'created_by'
     ];
 
     public function batches()

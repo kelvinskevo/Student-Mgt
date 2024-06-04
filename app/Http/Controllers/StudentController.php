@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
+use App\Models\Course;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class StudentController extends Controller
 {
@@ -22,7 +25,9 @@ class StudentController extends Controller
      */
     public function create()
     {
-        return view('students.create');
+        $courses = Course::all();
+        $students = Student::all();
+        return view('students.create')->with('courses', $courses);
     }
 
     /**
@@ -30,9 +35,54 @@ class StudentController extends Controller
      */
     public function store(StoreStudentRequest $request)
     {
+        $validatedData = $request->validated();
 
-        Student::create($request->validated());
-        return back()->with('success', 'Student Added Succcessfuly');
+        // Handle file upload for profile picture
+        if ($request->hasFile('profile_pic')) {
+            $validatedData['profile_pic'] = $request->file('profile_pic')->store('profile_pictures', 'public');
+        }
+
+        // Get the selected course ID
+        $courseId = $validatedData['class'];
+
+        // Fetch the course from the database
+        $course = Course::findOrFail($courseId);
+
+        // Get the course code and the current year
+        $courseCode = $course->code;
+        $currentYear = date('Y');
+
+        // Find the last admission number for the current course and year
+        $lastStudent = Student::where('class', $courseId)
+            ->where('admission_number', 'like', $courseCode . '-' . $currentYear . '-%')
+            ->orderBy('admission_number', 'desc')
+            ->first();
+
+        // Extract and increment the numeric part of the admission number
+        if ($lastStudent) {
+            $lastNumber = (int)substr($lastStudent->admission_number, -3);
+            $newNumber = $lastNumber + 1;
+        } else {
+            $newNumber = 1;
+        }
+
+        // Format the new admission number
+        $newAdmissionNumber = $courseCode . '-' . $currentYear . '-' . str_pad($newNumber, 3, '0', STR_PAD_LEFT);
+
+        // Set the class (course ID), admission number, and the created_by field
+        $validatedData['class'] = $courseId;
+        $validatedData['admission_number'] = $newAdmissionNumber;
+        $validatedData['created_by'] = Auth::id();
+
+        // Set the status field if not present
+        if (!isset($validatedData['status'])) {
+            $validatedData['status'] = 'active'; // Default status
+        }
+
+        // Create the student
+        Student::create($validatedData);
+
+        return Redirect::route('students.index')->with('success', 'Student Added Successfully');
     }
 
     /**

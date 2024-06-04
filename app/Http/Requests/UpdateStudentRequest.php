@@ -22,12 +22,19 @@ class UpdateStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'address' => 'required',
-            'mobile' => 'required',
-            'email' =>  'required',
-            'dob'   =>  'required',
-            'gender' => 'required'
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'mobile' => 'required|string|max:15',
+            'email' => 'required|email|unique:students,email',
+            'dob' => 'required|date',
+            'class' => 'required|exists:courses,id',
+            'gender' => 'required|string|in:male,female',
+            'admission_number' => 'required|string|unique:students,admission_number',
+            'religion' => 'nullable|string|max:255',
+            'blood_group' => 'nullable|string|max:3',
+            'status' => 'required|string|in:active,inactive',
+            'profile_pic' => 'nullable|image|max:2048',
+            'created_by' => 'required|exists:users,id'
         ];
     }
 }

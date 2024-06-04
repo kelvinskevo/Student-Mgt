@@ -22,12 +22,16 @@ class StoreStudentRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required|max:255',
-            'address' => 'required',
-            'mobile' => 'required',
-            'email' =>  'required',
-            'dob'   =>  'required',
-            'gender' => 'required'
+            'name' => 'required|string|max:255',
+            'address' => 'required|string|max:255',
+            'mobile' => 'required|string|max:15',
+            'email' => 'required|email|unique:students,email',
+            'dob' => 'required|date',
+            'class' => 'required|exists:courses,id',
+            'gender' => 'required|string|in:Male,Female',
+            'religion' => 'nullable|string|max:255',
+            'blood_group' => 'nullable|string|max:3',
+            'profile_pic' => 'nullable|image|max:2048',
         ];
     }
 }
